@@ -1,0 +1,11 @@
+exportPattern("^[[:alpha:]]+")
+useDynLib(mSimCC, Cmicrosim, .registration=TRUE)
+export(Cmicrosim)
+# Import all packages listed as Imports or Depends
+import(
+  parallel, doParallel, foreach
+)
+
+importFrom("grDevices", "dev.cur", "dev.off", "rainbow")
+  importFrom("graphics", "axis", "legend", "lines", "par", "plot")
+  importFrom("stats", "median")
