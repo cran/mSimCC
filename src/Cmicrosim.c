@@ -37,15 +37,15 @@ int cytologyTEST(SEXP SENSI, int location, double probscyto[3], int pathPROTO)
   }
   if (detectedW == 1)
   {
-    if ((location == 0) | (location == 1))
+    if ((location == 0) || (location == 1))
     {
       res = 1; /* ASCUS */
     }
-    if ((location == 2) | (location == 3) | (location == 4))
+    if ((location == 2) || (location == 3) || (location == 4))
     {
       res = 2; /* LSIL */
     }
-    if ((location == 5) | (location == 6) | (location == 7) | (location == 8))
+    if ((location == 5) || (location == 6) || (location == 7) || (location == 8))
     {
       res = 3; /* HSIL */
     }
@@ -78,7 +78,7 @@ struct scr_resultA scrSchema_A(SEXP SCREENSENSI, SEXP SCREENSENSI2, SEXP COLPOSE
     CYTO2:resCyto2 = cytologyTEST(SCREENSENSI2, location, probscyto, 0);
     res.nCyto = res.nCyto + 1;
   }
-  if ((detectedW == 2) | (detectedW == 3) | (resCyto2 > 0)) /* Neg */
+  if ((detectedW == 2) || (detectedW == 3) || (resCyto2 > 0)) /* Neg */
   {
     resColpo = colpoTEST(COLPOSENSI, location);
     res.nColpo = res.nColpo + 1;
@@ -125,11 +125,11 @@ int cytohpvPROTO(SEXP SCREENSENSI, SEXP HPVTESTSENSI, SEXP COLPOSENSI, int locat
   
   detectedW  = cytologyTEST(SCREENSENSI, location, probscyto, 0);
   detectedW2 = hpvTEST(HPVTESTSENSI, location);
-  if ((detectedW == 0) & (detectedW2 == 0)) /* Neg */
+  if ((detectedW == 0) && (detectedW2 == 0)) /* Neg */
   {
     res = 88;
   }
-  if ((detectedW != 0) | (detectedW2 == 1)) /* any Pos */
+  if ((detectedW != 0) || (detectedW2 == 1)) /* any Pos */
   {
     if (ColpoBefore == 0) /* No colpo before */
     {
@@ -167,7 +167,7 @@ struct scr_resultB scrSchema_B(SEXP SCREENSENSI, SEXP SCREENSENSI2, SEXP SCREENS
   int resCyto1=0, resHpvTest=0, ColpoBefore=0;
   struct scr_resultB res={.nCyto=0, .nHPV=0, .nColpo=0, .nBiops=0, .nCombos=0, .result=0};
   
-  if ((cyto_TOCA == 1) | (cytohpv_TOCA == 1))
+  if ((cyto_TOCA == 1) || (cytohpv_TOCA == 1))
   {
     if (cyto_TOCA == 1)
     {
@@ -281,7 +281,7 @@ struct scr_resultC scrSchema_C(SEXP SCREENSENSI, SEXP SCREENSENSI2, SEXP SCREENS
   int resCyto1=0, resHpvTest=0, ColpoBefore=0;
   struct scr_resultC res={.nCyto=0, .nHPV=0, .nColpo=0, .nBiops=0, .nCombos=0, .result=0};
   
-  if ((cytohpv_TOCA == 1) | (hpv_toca == 1))
+  if ((cytohpv_TOCA == 1) || (hpv_toca == 1))
   {
     if (hpv_toca == 1)
     {
@@ -311,7 +311,7 @@ struct scr_resultC scrSchema_C(SEXP SCREENSENSI, SEXP SCREENSENSI2, SEXP SCREENS
       {
         res.result = 0;
       }
-      if ((res.result == 888) | (res.result == 8888))
+      if ((res.result == 888) || (res.result == 8888))
       {
         res.result = colpoPROTO(SCREENSENSI2, HPVTESTSENSI, COLPOSENSI, location, ColpoBefore);
         res.nColpo = res.nColpo + 1;
@@ -414,7 +414,7 @@ struct scr_resultD scrSchema_D(SEXP SCREENSENSI, SEXP SCREENSENSI2, SEXP SCREENS
   int resCyto1=0, resHpvTest=0, ColpoBefore=0, resHpvGeno=0;
   struct scr_resultD res={.nCyto=0, .nHPV=0, .nColpo=0, .nBiops=0, .nCombos=0, .result=0};
   
-  if ((cytohpv_TOCA == 1) | (hpv_toca == 1))
+  if ((cytohpv_TOCA == 1) || (hpv_toca == 1))
   {
     if (hpv_toca == 1)
     {
@@ -444,7 +444,7 @@ struct scr_resultD scrSchema_D(SEXP SCREENSENSI, SEXP SCREENSENSI2, SEXP SCREENS
       {
         res.result = 0;
       }
-      if ((res.result == 888) | (res.result == 8888))
+      if ((res.result == 888) || (res.result == 8888))
       {
         res.result = colpoPROTO(SCREENSENSI2, HPVTESTSENSI, COLPOSENSI, location, ColpoBefore);
         res.nColpo = res.nColpo + 1;
@@ -683,7 +683,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
       nColpoStep=0;
       nHPVTestStep=0;
       nBiopsyStep=0;
-      if ((*screen == 1) & ((*scrSchema == 3) | (*scrSchema == 4)))
+      if ((*screen == 1) && ((*scrSchema == 3) || (*scrSchema == 4)))
       {
         if (ageStep <= *switchAge)
         {
@@ -696,7 +696,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
           *scrPeriod  = *INTEGER(VECTOR_ELT(C_PERIOD, 1));
         }
       }
-      if (((j % 2 == 0)) & (((j/2) % *dage) == 0))
+      if (((j % 2 == 0)) && (((j/2) % *dage) == 0))
       {
         ageG = ageG+1;
       }
@@ -716,7 +716,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
         /* vaccination module */
         vaccStep = 0;
         indVacc  = 0;
-        if ((*vacc == 1) & (vaccinatedW == 0))
+        if ((*vacc == 1) && (vaccinatedW == 0))
         {
           for (ind=0; ind<*nVaccPeriods; ind++)
           {
@@ -726,7 +726,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
               indVacc = ind;
             }
           }
-          if ((*vacc == 1) & (vaccStep == 1))
+          if ((*vacc == 1) && (vaccStep == 1))
           {
             vaccinatedW = rbinom(1, *REAL(VECTOR_ELT(VACC_COV, indVacc)));
             if (vaccinatedW == 1)
@@ -741,7 +741,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
             }
           }
         }
-        if ((vaccinatedW == 1) & (row == 0)) /* modify HPV infection probabilities if vaccinated */
+        if ((vaccinatedW == 1) && (row == 0)) /* modify HPV infection probabilities if vaccinated */
         {
           REAL(trans_v)[1] = (1.0-*REAL(VECTOR_ELT(VACC_EFF, ageVacc)))*REAL(trans_v)[1];
           REAL(trans_v)[0] = 1.0-REAL(trans_v)[1]-REAL(trans_v)[2]-REAL(trans_v)[3]-
@@ -767,7 +767,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
        costCoefs_nmd = REAL(VECTOR_ELT(COSTCOEFS_NMD, location));
        costCoefs_i   = REAL(VECTOR_ELT(COSTCOEFS_I, location));
 
-       if ((location != 10) & (location != 11))
+       if ((location != 10) && (location != 11))
        {
          utilities[i]      = utilities[i]      + *utility/2;
          utilities_disc[i] = utilities_disc[i] + (*utility/2)/pow((1+*disc/200), (j-1));
@@ -780,30 +780,30 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
            {
              screenedW = rbinom(1, *REAL(VECTOR_ELT(SCREENCOVERAGE, ageG)));
            }
-           if ((*scrSchema==1) & (ind2>0))
+           if ((*scrSchema==1) && (ind2>0))
            {
              screenedW = 1;
            }
            if (*scrSchema==2)
            {
-           	 if (((ind4 == *cytoLSILperiod) & (ind4>0) & (ind8 < *nAnnualVisitsLSIL)) | ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) & (ind5>0)) |
-              ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) & (ind5>0)) | ((ind6 == *cytohpvpostcolpo) & (ind6>0)) |
-              ((ind7 == *cytoHSILperiod) & (ind7>0) & ((ind9 < *nAnnualVisitsHSIL) & (ind9>0))))
+           	 if (((ind4 == *cytoLSILperiod) && (ind4>0) && (ind8 < *nAnnualVisitsLSIL)) || ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) && (ind5>0)) ||
+              ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) && (ind5>0)) || ((ind6 == *cytohpvpostcolpo) && (ind6>0)) ||
+              ((ind7 == *cytoHSILperiod) && (ind7>0) && ((ind9 < *nAnnualVisitsHSIL) && (ind9>0))))
              {
                screenedW = 1;
              }
            }
-           if ((*scrSchema==3) | (*scrSchema==4))
+           if ((*scrSchema==3) || (*scrSchema==4))
            {
-           	 if (((ind3 == *cytohpvperiod) & (ind3>0)) | ((ind4 == *hpvPeriod) & (ind4>0)) | ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) & (ind5>0)) |
-                 ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) & (ind5>0)) | ((ind6 == *cytohpvpostcolpo) & (ind6>0)))
+           	 if (((ind3 == *cytohpvperiod) && (ind3>0)) || ((ind4 == *hpvPeriod) && (ind4>0)) || ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) && (ind5>0)) ||
+                 ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) && (ind5>0)) || ((ind6 == *cytohpvpostcolpo) && (ind6>0)))
              {
                screenedW = 1;
              }
            }
-           if ((*scrSchema == 1) & (screenedW == 1))
+           if ((*scrSchema == 1) && (screenedW == 1))
          	 {
-         	   if ((ind2 >= *nAnnualVisits) & (ind2 != 999))
+         	   if ((ind2 >= *nAnnualVisits) && (ind2 != 999))
          	   {
          	 	   ind2 = 0;
          	   }
@@ -817,22 +817,22 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
            	   }
              }
          	 }
-         	 if ((*scrSchema == 2) & (screenedW == 1))
+         	 if ((*scrSchema == 2) && (screenedW == 1))
          	 {
-         	   if (((ind4 > *cytoLSILperiod) & (ind4 != 999)) | (ind8 >= *nAnnualVisitsLSIL))
+         	   if (((ind4 > *cytoLSILperiod) && (ind4 != 999)) || (ind8 >= *nAnnualVisitsLSIL))
          	   {
          	 	   ind4 = 0;
                ind8 = 0;
          	   }
-         	   if ((ind5 > *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) & (ind5 != 999))
+         	   if ((ind5 > *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) && (ind5 != 999))
              {
                ind5 = 0;
              }
-             if ((ind6 > *cytohpvpostcolpo) & (ind6 != 999))
+             if ((ind6 > *cytohpvpostcolpo) && (ind6 != 999))
              {
                ind6 = 0;
              }
-         	   if (((ind7 > *cytoHSILperiod) & (ind7 != 999)) | (ind9 >= *nAnnualVisitsHSIL))
+         	   if (((ind7 > *cytoHSILperiod) && (ind7 != 999)) || (ind9 >= *nAnnualVisitsHSIL))
          	   {
          	 	   ind7 = 0;
                ind9 = 0;
@@ -842,9 +842,9 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
            	   if (ind4 == 999)
            	   {
            	     ind4 = 1;
-								 ind8 = 1;
+		     ind8 = 1;
            	   }else{
-           	 	   ind4 = ind4 + 1;
+           	     ind4 = ind4 + 1;
                  ind8 = ind8 + 1;
                }
              }
@@ -878,21 +878,21 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
                }
              }
          	 }
-         	 if (((*scrSchema == 3) | (*scrSchema == 4)) & (screenedW == 1))
+         	 if (((*scrSchema == 3) || (*scrSchema == 4)) && (screenedW == 1))
          	 {
-         	   if ((ind3 > *cytohpvperiod) & (ind3 != 999))
+         	   if ((ind3 > *cytohpvperiod) && (ind3 != 999))
              {
                ind3 = 0;
              }
-             if ((ind4 > *hpvPeriod) & (ind4 != 999))
+             if ((ind4 > *hpvPeriod) && (ind4 != 999))
              {
                ind4 = 0;
              }
-             if ((ind5 > *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) & (ind5 != 999))
+             if ((ind5 > *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) && (ind5 != 999))
              {
                ind5 = 0;
              }
-             if ((ind6 > *cytohpvpostcolpo) & (ind6 != 999))
+             if ((ind6 > *cytohpvpostcolpo) && (ind6 != 999))
              {
                ind6 = 0;
              }
@@ -935,7 +935,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
            }
          }
 
-         if ((screenedW == 1) & (*scrSchema == 1)) /* SCHEMA A: Cytology alone with repeat cytology for triage */
+         if ((screenedW == 1) && (*scrSchema == 1)) /* SCHEMA A: Cytology alone with repeat cytology for triage */
          {
            if (ind2>0)
            {
@@ -960,16 +960,16 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
            }
          }
 
-         if ((screenedW == 1) & (*scrSchema == 2)) /* SCHEMA B: Cytology with HPV triage */
+         if ((screenedW == 1) && (*scrSchema == 2)) /* SCHEMA B: Cytology with HPV triage */
          {
-         	 if ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) | (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) |
+         	 if ((ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) || (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) ||
                (ind6 == *cytohpvpostcolpo))
            {
              cytohpv_TOCA = 1;
            }else{
            	 cytohpv_TOCA = 0;
            }
-           if (((ind4 == *cytoLSILperiod) & (ind8 != 0)) | ((ind7 == *cytoHSILperiod) & (ind9 != 0)))
+           if (((ind4 == *cytoLSILperiod) && (ind8 != 0)) || ((ind7 == *cytoHSILperiod) && (ind9 != 0)))
            {
              cyto_TOCA = 1;
            }else{
@@ -1013,9 +1013,9 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
            }
          }
 
-         if ((screenedW == 1) & (*scrSchema == 3))  /* SCHEMA C: HPV with cytology triage */
+         if ((screenedW == 1) && (*scrSchema == 3))  /* SCHEMA C: HPV with cytology triage */
          {
-           if ((ind3 == *cytohpvperiod) | (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) | (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) |
+           if ((ind3 == *cytohpvperiod) || (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) || (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) ||
                (ind6 == *cytohpvpostcolpo))
            {
              cytohpv_TOCA = 1;
@@ -1063,10 +1063,10 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
              ind6     = 0;
            }
          }
-         if ((screenedW == 1) & (*scrSchema == 4))  /* SCHEMA D: HPV genotyping with cytology triage */
+         if ((screenedW == 1) && (*scrSchema == 4))  /* SCHEMA D: HPV genotyping with cytology triage */
          {
-         	 if ((ind3 == *cytohpvperiod) | (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) | 
-         	 	   (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) |
+         	 if ((ind3 == *cytohpvperiod) || (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 0))) || 
+         	 	   (ind5 == *INTEGER(VECTOR_ELT(CYTOHPVPOSTBIOP, 1))) ||
                (ind6 == *cytohpvpostcolpo))
            {
              cytohpv_TOCA = 1;
@@ -1115,7 +1115,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
            }
          }
 
-         if ((*screen == 1) & (*scrSchema == 1))
+         if ((*screen == 1) && (*scrSchema == 1))
          {
            md_cost[i]   = md_cost[i]  + global_scrA.nCyto*(*screenPrice_md)  + global_scrA.nColpo*(*colpoPrice_md);
            nmd_cost[i]  = nmd_cost[i] + global_scrA.nCyto*(*screenPrice_nmd) + global_scrA.nColpo*(*colpoPrice_nmd);
@@ -1128,7 +1128,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
            i_cost_disc[i]    = i_cost_disc[i]   + (global_scrA.nCyto*(*screenPrice_i)   +
              global_scrA.nColpo*(*colpoPrice_i))/pow((1+*disc/200), (j-1));
          }
-         if ((*screen == 1) & (*scrSchema == 2))
+         if ((*screen == 1) && (*scrSchema == 2))
          {
            md_cost[i]   = md_cost[i]  + global_scrB.nCyto*(*screenPrice_md)  + global_scrB.nHPV*(*hpvTestPrice_md) +
              global_scrB.nColpo*(*colpoPrice_md) + global_scrB.nBiops*(*biopsPrice_md) +
@@ -1156,7 +1156,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
              global_scrB.nBiops*(*biopsPrice_i) + global_scrB.nCombos*(*cytoHpvPrice_i) -
              global_scrB.nCombos*(*screenPrice_i) - global_scrB.nCombos*(*hpvTestPrice_i))/pow((1+*disc/200), (j-1));
          }
-         if ((*screen == 1) & (*scrSchema == 3))
+         if ((*screen == 1) && (*scrSchema == 3))
          {
            md_cost[i]   = md_cost[i]  + global_scrC.nCyto*(*screenPrice_md)  + global_scrC.nHPV*(*hpvTestPrice_md) +
              global_scrC.nColpo*(*colpoPrice_md) + global_scrC.nBiops*(*biopsPrice_md) +
@@ -1184,7 +1184,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
              global_scrC.nBiops*(*biopsPrice_i) + global_scrC.nCombos*(*cytoHpvPrice_i) -
              global_scrC.nCombos*(*screenPrice_i) - global_scrC.nCombos*(*hpvTestPrice_i))/pow((1+*disc/200), (j-1));
          }
-         if ((*screen == 1) & (*scrSchema == 4))
+         if ((*screen == 1) && (*scrSchema == 4))
          {
            md_cost[i]   = md_cost[i]  + global_scrD.nCyto*(*screenPrice_md)  + global_scrD.nHPV*(*hpvTestPrice_md) +
              global_scrD.nColpo*(*colpoPrice_md) + global_scrD.nBiops*(*biopsPrice_md) +
@@ -1221,7 +1221,7 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
              symptstateB = rbinom(1, *REAL(VECTOR_ELT(PROB_SYMPT, c)));
            }
          }
-         if ((symptstateB == 1) & (treatedW == 0))
+         if ((symptstateB == 1) && (treatedW == 0))
          {
            treatedW = 1;
          }
@@ -1241,19 +1241,19 @@ SEXP Cmicrosim(SEXP TRANSITION, SEXP NSTATES, SEXP ABS_STATES, SEXP NABS_STATES,
            change_state = 0;
          }
        }
-       if ((location == 2) & (change_state == 1))
+       if ((location == 2) && (change_state == 1))
        {
          newCIN1[j] = newCIN1[j] + 1.0;
        }
-       if ((location == 3) & (change_state == 1))
+       if ((location == 3) && (change_state == 1))
        {
          newCIN2[j] = newCIN2[j] + 1.0;
        }
-       if ((location == 4) & (change_state == 1))
+       if ((location == 4) && (change_state == 1))
        {
          newCIN3[j] = newCIN3[j] + 1.0;
        }
-       if ((location == 5) & (change_state == 1))
+       if ((location == 5) && (change_state == 1))
        {
          newCC[j] = newCC[j] + 1.0;
        }

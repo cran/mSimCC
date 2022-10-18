@@ -1,4 +1,4 @@
-0099f38ab23d0559c1ad1d1e71c29f67 *DESCRIPTION
+77496bf69bcc6b03aef3b184af673aea *DESCRIPTION
 c32ded9c58cadf1383314bca88198e64 *NAMESPACE
 e211290bbea71ac531c82a0442218718 *R/bCohort.R
 ba51a9549cc5801e3ed7bf42ea82d527 *R/byAgeGroup2.R
@@ -30,5 +30,5 @@ dc0e17b4f7acf2b24c81fa7ff3ee9814 *man/plotMortality.Rd
 b1c63f690517368a4fdb3c5d92f829e3 *man/probs.Rd
 f282814b877b79c8453c8f01459eeebd *man/qalys.Rd
 774829c92762d80e1429e705f7c6c10c *man/yls.Rd
-2ab8bb7877d45d098c0c9dfac0af688b *src/Cmicrosim.c
+d6098375bcdc303d75037884ed22fd44 *src/Cmicrosim.c
 7c22b1b500cab25872924e218f1645f5 *src/registerDynamicSymbol.c
