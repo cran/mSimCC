@@ -13,17 +13,16 @@ Microsimulation model to reproduce natural history of cervical cancer and cost-e
 \tabular{ll}{
 Package: \tab mSimCC\cr
 Type: \tab Package\cr
-Version: \tab 0.0.1\cr
-Date: \tab 2019-05-23\cr
+Version: \tab 0.0.3\cr
+Date: \tab 2023-08-21\cr
 License: \tab GPL version 2 or newer\cr
 LazyLoad: \tab yes\cr
 }
-The package 
 }
 \author{
-David Moriña, Pedro Puig and Mireia Diaz
+David Moriña (Universitat de Barcelona), Pedro Puig (Universitat Autònoma de Barcelona) and Mireia Diaz (Institut Català d'Oncologia)
 
-Mantainer: David Moriña Soler <david.morina@uab.cat>
+Mantainer: David Moriña Soler <dmorina@ub.edu>
 }
 
 \seealso{

@@ -35,7 +35,7 @@ Moriña D, de Sanjosé S, Diaz M. Impact of model calibration on cost-effectiven
 }
 
 \author{
-David Moriña, Pedro Puig and Mireia Diaz
+David Moriña (Universitat de Barcelona), Pedro Puig (Universitat Autònoma de Barcelona) and Mireia Diaz (Institut Català d'Oncologia)
 }
 
 \seealso{

@@ -1,8 +1,8 @@
 Package: mSimCC
 Type: Package
 Title: Micro Simulation Model for Cervical Cancer Prevention
-Version: 0.0.2
-Date: 2022-10-17
+Version: 0.0.3
+Date: 2023-08-21
 Author: David Moriña (Universitat de Barcelona), Pedro Puig (Universitat Autònoma de Barcelona) and Mireia Diaz (Institut Català d'Oncologia)
 Maintainer: David Moriña Soler <dmorina@ub.edu>
 Description: Micro simulation model to reproduce natural history of cervical cancer and cost-effectiveness evaluation of prevention strategies. See Georgalis L, de Sanjose S, Esnaola M, Bosch F X, Diaz M (2016) <doi:10.1097/CEJ.0000000000000202> for more details.
@@ -11,6 +11,6 @@ Encoding: UTF-8
 LazyData: true
 Depends: R (>= 3.1.1), parallel, doParallel, foreach
 NeedsCompilation: yes
-Packaged: 2022-10-17 09:54:38 UTC; dmorina
+Packaged: 2023-08-21 07:37:58 UTC; dmorina
 Repository: CRAN
-Date/Publication: 2022-10-18 12:22:41 UTC
+Date/Publication: 2023-08-22 12:10:08 UTC
